@@ -1,7 +1,5 @@
 package com.barbearia.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.barbearia.api.model.ProfissionalVO;
 import com.barbearia.api.service.ProfissionalService;
+import com.barbearia.api.util.Retorno;
 
 @RestController 
 @RequestMapping("/profissional") 
@@ -22,29 +21,29 @@ public class ProfissionalRestCtr {
 	private ProfissionalService profissionalService;
 	
 	@GetMapping()
-	public List<ProfissionalVO> buscarTodosProfissionais() {
+	public Retorno buscarTodosProfissionais() {
 		return profissionalService.buscarTodosProfissionais();
 	}
 	
 	
 	@GetMapping("/buscar-por-codigo/{codProfissional}")
-	public ProfissionalVO buscarPorCodProfissional(@PathVariable Long codProfissional) throws Exception {
+	public Retorno buscarPorCodProfissional(@PathVariable Long codProfissional) throws Exception {
 		return profissionalService.buscarPorCodProfissional(codProfissional);
 	}
 		
 	@PostMapping()
-	public ProfissionalVO gravarProfissional(@RequestBody ProfissionalVO profissionalVO) {
+	public Retorno gravarProfissional(@RequestBody ProfissionalVO profissionalVO) {
 		return profissionalService.gravarProfissional(profissionalVO);
 	}
 	
 	@PutMapping()
-	public ProfissionalVO editarProfissional(@RequestBody ProfissionalVO profissionalVO) {
+	public Retorno editarProfissional(@RequestBody ProfissionalVO profissionalVO) {
 		return profissionalService.editarProfissional(profissionalVO);
 	}
 	
 	@DeleteMapping("/{codProfissional}")
-	public void deletarProfissional(@PathVariable Long codProfissional) {
-		profissionalService.deletarProfissional(codProfissional);
+	public Retorno deletarProfissional(@PathVariable Long codProfissional) {
+		return profissionalService.deletarProfissional(codProfissional);
 	}
 
 	

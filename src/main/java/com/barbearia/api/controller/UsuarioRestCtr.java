@@ -1,7 +1,5 @@
 package com.barbearia.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.barbearia.api.model.UsuarioVO;
 import com.barbearia.api.service.UsuarioService;
+import com.barbearia.api.util.Retorno;
 
 @RestController 
 @RequestMapping("/usuario") 
@@ -22,29 +21,29 @@ public class UsuarioRestCtr {
 	private UsuarioService usuarioService;
 	
 	@GetMapping()
-	public List<UsuarioVO> buscarTodosUsuarios() {
+	public Retorno buscarTodosUsuarios() {
 		return usuarioService.buscarTodosUsuarios();
 	}
 	
 	
 	@GetMapping("/buscar-por-codigo/{codUsuario}")
-	public UsuarioVO buscarPorCodUsuario(@PathVariable Long codUsuario) throws Exception {
+	public Retorno buscarPorCodUsuario(@PathVariable Long codUsuario) throws Exception {
 		return usuarioService.buscarPorCodUsuario(codUsuario);
 	}
 		
 	@PostMapping()
-	public UsuarioVO gravarUsuario(@RequestBody UsuarioVO usuarioVO) {
+	public Retorno gravarUsuario(@RequestBody UsuarioVO usuarioVO) {
 		return usuarioService.gravarUsuario(usuarioVO);
 	}
 	
 	@PutMapping()
-	public UsuarioVO editarUsuario(@RequestBody UsuarioVO usuarioVO) {
+	public Retorno editarUsuario(@RequestBody UsuarioVO usuarioVO) {
 		return usuarioService.editarUsuario(usuarioVO);
 	}
 	
 	@DeleteMapping("/{codUsuario}")
-	public void deletarUsuario(@PathVariable Long codUsuario) {
-		usuarioService.deletarUsuario(codUsuario);
+	public Retorno deletarUsuario(@PathVariable Long codUsuario) {
+		return usuarioService.deletarUsuario(codUsuario);
 	}
 
 

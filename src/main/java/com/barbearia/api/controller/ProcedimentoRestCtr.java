@@ -1,7 +1,5 @@
 package com.barbearia.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.barbearia.api.model.ProcedimentoVO;
 import com.barbearia.api.service.ProcedimentoService;
+import com.barbearia.api.util.Retorno;
 
 @RestController 
 @RequestMapping("/procedimento") 
@@ -23,29 +22,29 @@ public class ProcedimentoRestCtr {
 	private ProcedimentoService procedimentoService;
 	
 	@GetMapping()
-	public List<ProcedimentoVO> buscarTodosProcedimentos() {
+	public Retorno buscarTodosProcedimentos() {
 		return procedimentoService.buscarTodosProcedimentos();
 	}
 	
 	
 	@GetMapping("/buscar-por-codigo/{codProcedimento}")
-	public ProcedimentoVO buscarPorCodProcedimento(@PathVariable Long codProcedimento) throws Exception {
+	public Retorno buscarPorCodProcedimento(@PathVariable Long codProcedimento) throws Exception {
 		return procedimentoService.buscarPorCodProcedimento(codProcedimento);
 	}
 		
 	@PostMapping()
-	public ProcedimentoVO gravarProcedimento(@RequestBody ProcedimentoVO procedimentoVO) {
+	public Retorno gravarProcedimento(@RequestBody ProcedimentoVO procedimentoVO) {
 		return procedimentoService.gravarProcedimento(procedimentoVO);
 	}
 	
 	@PutMapping()
-	public ProcedimentoVO editarProcedimento(@RequestBody ProcedimentoVO procedimentoVO) {
+	public Retorno editarProcedimento(@RequestBody ProcedimentoVO procedimentoVO) {
 		return procedimentoService.editarProcedimento(procedimentoVO);
 	}
 	
 	@DeleteMapping("/{codProcedimento}")
-	public void deletarProcedimento(@PathVariable Long codProcedimento) {
-		procedimentoService.deletarProcedimento(codProcedimento);
+	public Retorno deletarProcedimento(@PathVariable Long codProcedimento) {
+		return procedimentoService.deletarProcedimento(codProcedimento);
 	}
 
 }
