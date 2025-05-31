@@ -37,6 +37,7 @@ public class AtendimentoService {
 	
 	@Autowired
 	private ProcedimentoPessoaRepository procedimentoPessoaRepository;
+
 	@Autowired
 	private ProcedimentoRepository procedimentoRepository;
 	
